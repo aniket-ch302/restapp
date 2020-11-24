@@ -1,8 +1,16 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
+const v1=require('./v1/webservices')
+const requestJson=require('./v1/requestjson')
 
-app.get('/', (req, res) => {
-  res.send('Hello from App Engine priya sharma!');
+app.get('/v1/signup', (req, res) => { 
+  res.send(requestJson.signupJson);
+});
+
+app.post('/v1/signup', (req, res) => { 
+  console.log(req.body)
+  res.send(req.body);
 });
 
 // Listen to the App Engine-specified port, or 8080 otherwise
